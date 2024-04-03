@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\gol_razor.props" />
+</Project>
