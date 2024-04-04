@@ -15,8 +15,12 @@ public class CrudController : ControllerBase
         Context = context;
     }
 
-
+    /// <summary>
+    /// Gets a list of all staff members.
+    /// </summary>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+
     public async Task<ActionResult<IEnumerable<Department>>> Get()
     {
         return await Context.Departments.ToListAsync();
