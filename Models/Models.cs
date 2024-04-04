@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace gol_razor.Models;
 
 public class Staff
 {
@@ -44,6 +47,7 @@ public class Shift
     public string ShiftName { get; set; }
 }
 
+[Index(nameof(RoleName), IsUnique = true)]
 public class Role
 {
     public int Id { get; set; }
@@ -52,7 +56,7 @@ public class Role
     [Column(TypeName = "varchar(30)")]
     public string RoleName { get; set; }
 }
-
+[Index(nameof(Name), IsUnique = true)]
 public class Department
 {
     public int Id { get; set; }
@@ -62,5 +66,5 @@ public class Department
     public string Name { get; set; }
 
     // Navigation property
-    public ICollection<Staff> Staffs { get; set; }
+    public ICollection<Staff>? Staffs { get; set; }
 }

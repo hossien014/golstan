@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gol_razor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30d90a26a6412ce338653cddcd30fdecd763f8f0")]
 [assembly: System.Reflection.AssemblyProductAttribute("gol_razor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gol_razor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,6 @@
+using gol_razor.Models;
 using Microsoft.EntityFrameworkCore;
+
 namespace gol_razor;
 
 public class GolestanContext : DbContext
@@ -7,6 +9,7 @@ public class GolestanContext : DbContext
     {
 
     }
+
     public DbSet<Role> Roles { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Staff> Staffs { get; set; }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gol_razor;
 
@@ -10,9 +11,11 @@ using gol_razor;
 namespace gol_razor.Migrations
 {
     [DbContext(typeof(GolestanContext))]
-    partial class GolestanContextModelSnapshot : ModelSnapshot
+    [Migration("20240403233306_UniqueName")]
+    partial class UniqueName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
