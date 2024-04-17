@@ -1,13 +1,18 @@
+using gol_razor.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-
-public class WardModel(DbContext context) : PageModel
+using gol_razor;
+using Microsoft.AspNetCore.Mvc;
+public class WardModel(GolestanContext context) : PageModel
 {
-    private readonly DbContext Context = context;
+    private readonly GolestanContext Context = context;
 
-    public void OnGet()
+    public List<Ward> wards { get; set; }
+
+    public async Task<IActionResult> OnGet()
     {
-
-        
+        wards = await Context.Wards.ToListAsync();
+        return Page();
     }
+
 }

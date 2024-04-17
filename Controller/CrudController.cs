@@ -22,13 +22,12 @@ public class CrudController : ControllerBase
     /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-
-    public async Task<ActionResult<IEnumerable<Ward>>> Get()
+    public async Task<ActionResult<IEnumerable<Ward>>> GetWards()
     {
         return await Context.Wards.ToListAsync();
     }
     [HttpGet("{id}")]
-    public async Task<ActionResult<Ward>> Get(int id)
+    public async Task<ActionResult<Ward>> GetWardByID(int id)
     {
         var WardInDB = await Context.Wards.FirstOrDefaultAsync(x => x.Id == id);
 
@@ -78,7 +77,7 @@ public class CrudController : ControllerBase
             return NotFound(e.Message);
         }
 
-        return CreatedAtAction(nameof(Get), ward);
+        return CreatedAtAction(nameof(GetWardByID), ward);
     }
 
     [HttpPut("{id}")]
