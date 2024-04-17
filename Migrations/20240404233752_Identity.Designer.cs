@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gol_razor;
 
@@ -10,9 +11,11 @@ using gol_razor;
 namespace gol_razor.Migrations
 {
     [DbContext(typeof(GolestanContext))]
-    partial class GolestanContextModelSnapshot : ModelSnapshot
+    [Migration("20240404233752_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -209,6 +212,24 @@ namespace gol_razor.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("gol_razor.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Departments");
+                });
+
             modelBuilder.Entity("gol_razor.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -284,24 +305,6 @@ namespace gol_razor.Migrations
                     b.ToTable("Staffs");
                 });
 
-            modelBuilder.Entity("gol_razor.Models.Ward", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Wards");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -355,7 +358,7 @@ namespace gol_razor.Migrations
 
             modelBuilder.Entity("gol_razor.Models.Shift", b =>
                 {
-                    b.HasOne("gol_razor.Models.Ward", "Department")
+                    b.HasOne("gol_razor.Models.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -374,7 +377,7 @@ namespace gol_razor.Migrations
 
             modelBuilder.Entity("gol_razor.Models.Staff", b =>
                 {
-                    b.HasOne("gol_razor.Models.Ward", "Department")
+                    b.HasOne("gol_razor.Models.Department", "Department")
                         .WithMany("Staffs")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,7 +394,7 @@ namespace gol_razor.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("gol_razor.Models.Ward", b =>
+            modelBuilder.Entity("gol_razor.Models.Department", b =>
                 {
                     b.Navigation("Staffs");
                 });

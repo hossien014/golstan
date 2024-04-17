@@ -1,11 +1,13 @@
 using gol_razor;
 using gol_razor.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 
 [ApiController]
-[Route("api/department")]
+[Route("api/wards")]
+[Authorize(Policy ="AdminPolicy")]
 public class CrudController : ControllerBase
 {
     private readonly GolestanContext Context;
@@ -21,21 +23,21 @@ public class CrudController : ControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
 
-    public async Task<ActionResult<IEnumerable<Department>>> Get()
+    public async Task<ActionResult<IEnumerable<Ward>>> Get()
     {
-        return await Context.Departments.ToListAsync();
+        return await Context.Wards.ToListAsync();
     }
     [HttpGet("{id}")]
-    public async Task<ActionResult<Department>> Get(int id)
+    public async Task<ActionResult<Ward>> Get(int id)
     {
-        var departmentInDB = await Context.Departments.FirstOrDefaultAsync(x => x.Id == id);
+        var WardInDB = await Context.Wards.FirstOrDefaultAsync(x => x.Id == id);
 
-        if (departmentInDB == null)
+        if (WardInDB == null)
         {
-            return NotFound($"No department found with Id :{id}");
+            return NotFound($"No ward found with Id :{id}");
         }
 
-        return departmentInDB;
+        return WardInDB;
     }
 
 
@@ -43,29 +45,29 @@ public class CrudController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var departmentInDB = Context.Departments.FirstOrDefault(x => x.Id == id);
-        if (departmentInDB == null)
+        var wardInDB = Context.Wards.FirstOrDefault(x => x.Id == id);
+        if (wardInDB == null)
         {
-            return NotFound($"No department found with Id :{id}");
+            return NotFound($"No ward found with Id :{id}");
         }
-        Context.Departments.Remove(departmentInDB);
+        Context.Wards.Remove(wardInDB);
         await Context.SaveChangesAsync();
-        return Ok($"Department with id : {id} and name :{departmentInDB.Name} deleted successfully");
+        return Ok($"ward with id : {id} and name :{wardInDB.Name} deleted successfully");
 
     }
     [HttpPost]
-    public async Task<IActionResult> Post(Department department)
+    public async Task<IActionResult> Post(Ward ward)
     {
 
-        department.Name = department.Name.ToUpper();
+        ward.Name = ward.Name.ToUpper();
 
-        var departmentInDB = Context.Departments.FirstOrDefault(x => x.Name == department.Name);
-        if (departmentInDB != null)
+        var wardInDB = Context.Wards.FirstOrDefault(x => x.Name == ward.Name);
+        if (wardInDB != null)
         {
-            return BadRequest($"{department.Name} already exists");
+            return BadRequest($"{ward.Name} already exists");
         }
 
-        Context.Departments.Add(department);
+        Context.Wards.Add(ward);
         try
         {
 
@@ -76,29 +78,29 @@ public class CrudController : ControllerBase
             return NotFound(e.Message);
         }
 
-        return CreatedAtAction(nameof(Get), department);
+        return CreatedAtAction(nameof(Get), ward);
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Put(int id, Department department)
+    public async Task<ActionResult> Put(int id, Ward ward)
     {
-        if (id != department.Id)
+        if (id != ward.Id)
         {
             return BadRequest("Id Mismatch");
         }
-        department.Name = department.Name.ToUpper();
+        ward.Name = ward.Name.ToUpper();
         //modifying department with matching id
-        Context.Entry(department).State = EntityState.Modified;
+        Context.Entry(ward).State = EntityState.Modified;
         try
         {
             await Context.SaveChangesAsync();
-            return Ok(new { Message = $"Department with id : {id} updated successfully", department });
+            return Ok(new { Message = $"ward with id : {id} updated successfully", ward });
         }
         catch (DbUpdateConcurrencyException e)
         {
-            if (Context.Departments.FirstOrDefault(x => x.Id == id) == null)
+            if (Context.Wards.FirstOrDefault(x => x.Id == id) == null)
             {
-                return NotFound($"Department with id {id} not found for update.");
+                return NotFound($"ward with id {id} not found for update.");
             }
             else
             {

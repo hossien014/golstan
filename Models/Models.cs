@@ -20,7 +20,7 @@ public class Staff
 
     public int DepartmentId { get; set; }
     [ForeignKey("DepartmentId")]
-    public Department Department { get; set; }
+    public Ward Department { get; set; }
 
     public int RoleId { get; set; }
     [ForeignKey("RoleId")]
@@ -40,7 +40,7 @@ public class Shift
 
     public int DepartmentId { get; set; }
     [ForeignKey("DepartmentId")]
-    public Department Department { get; set; }
+    public Ward Department { get; set; }
 
     [Required]
     [Column(TypeName = "varchar(2)")]
@@ -57,7 +57,7 @@ public class Role
     public string RoleName { get; set; }
 }
 [Index(nameof(Name), IsUnique = true)]
-public class Department
+public class Ward
 {
     public int Id { get; set; }
 

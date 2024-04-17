@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-public class DepartmentModel(DbContext context) : PageModel
+public class WardModel(DbContext context) : PageModel
 {
     private readonly DbContext Context = context;
 

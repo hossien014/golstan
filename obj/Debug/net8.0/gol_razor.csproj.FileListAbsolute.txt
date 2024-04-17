@@ -260,3 +260,17 @@ C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Swashbuckle.AspNet
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\obj\Debug\net8.0\gol_razor.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
