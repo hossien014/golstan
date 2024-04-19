@@ -1,8 +1,19 @@
 ﻿@page
 @model PrivacyModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
     ViewData["Title"] = "Privacy Policy";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to detail your site's privacy policy.</p>
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>خوش امدید </h1>
+}else{
+    <h1>وارد شوید</h1>
+}

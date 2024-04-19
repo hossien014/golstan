@@ -1,6 +1,7 @@
 using System.Text;
 using gol_razor;
 using gol_razor.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,11 +36,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(
 )
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<GolestanContext>();
-
+// به صورت نرمال از کوکی استفاده میکند ولی میتوان جی د تی هم اشافه کرد
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    //اگر از اینها استفاده کنیم به صورت پیشفرض از  جی دابلیو تی استفاد می کند ه
+    // options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    // options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
 }).AddJwtBearer(options =>
 {
@@ -55,7 +57,18 @@ builder.Services.AddAuthentication(options =>
     };
 
 });
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "dentity/Account/Loging";
+});
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Adjust expiration as needed
+    options.LoginPath = "/Login"; // Specify the login page route
+    options.AccessDeniedPath = "/AccessDenied"; // Specify the access denied page route
+    options.SlidingExpiration = true;
+});
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
@@ -79,6 +92,8 @@ app.UseAuthorization();
 
 //Minimal API Endpoints
 app.MapControllers();
+// make get endpoint that get a number and make it squer and return it 
+app.MapGet("/square/{number}", (long number) => { return number * number; });
 // .RequireAuthorization();
 
 app.MapRazorPages();

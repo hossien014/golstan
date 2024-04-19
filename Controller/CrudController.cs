@@ -1,5 +1,6 @@
 using gol_razor;
 using gol_razor.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 [ApiController]
 [Route("api/wards")]
-[Authorize(Policy ="AdminPolicy")]
+[Authorize(Policy ="AdminPolicy",AuthenticationSchemes =JwtBearerDefaults.AuthenticationScheme)]
 public class CrudController : ControllerBase
 {
     private readonly GolestanContext Context;
