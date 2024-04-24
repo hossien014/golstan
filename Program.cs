@@ -1,5 +1,6 @@
 using System.Text;
 using gol_razor;
+using gol_razor.GolManager;
 using gol_razor.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,6 +21,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("gol", new OpenApiInfo { Title = "Golestan API", Version = "v1" });
 });
 
+builder.Services.AddScoped<GolManager>();
 builder.Services.AddDbContext<GolestanContext>
 (option => option.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
 
@@ -65,7 +67,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.HttpOnly = true;
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Adjust expiration as needed
-    options.LoginPath = "/Login"; // Specify the login page route
+    options.LoginPath = "/Identity/Account/loging"; // Specify the login page route
     options.AccessDeniedPath = "/AccessDenied"; // Specify the access denied page route
     options.SlidingExpiration = true;
 });
@@ -129,4 +131,5 @@ using (var scope = app.Services.CreateScope())
         await UserManeger.AddToRoleAsync(user, "Admin");
     }
 }
+app.UseStatusCodePagesWithRedirects("/errors/{0}");
 app.Run();
