@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace gol_razor.Models;
@@ -9,7 +11,7 @@ public class Staff
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
-
+    // [Display(Name ="نام")]
     [Required]
     [Column(TypeName = "nvarchar(50)")]
     public string FirstName { get; set; }
@@ -18,13 +20,13 @@ public class Staff
     [Column(TypeName = "nvarchar(50)")]
     public string LastName { get; set; }
 
-    public int DepartmentId { get; set; }
-    [ForeignKey("DepartmentId")]
-    public Ward Department { get; set; }
+    public int WardId { get; set; }
+    [ForeignKey("WardId")]
+    public Ward Ward { get; set; }
 
-    public int RoleId { get; set; }
+    public string RoleId { get; set; }
     [ForeignKey("RoleId")]
-    public Role Role { get; set; }
+    public IdentityRole Role { get; set; }
 }
 
 public class Shift
@@ -46,16 +48,16 @@ public class Shift
     [Column(TypeName = "varchar(2)")]
     public string ShiftName { get; set; }
 }
+//USE ASP IDENTITY ROLE INSTEAD OF CUSTOM ROLE
+// [Index(nameof(RoleName), IsUnique = true)]
+// public class Role
+// {
+//     public int Id { get; set; }
 
-[Index(nameof(RoleName), IsUnique = true)]
-public class Role
-{
-    public int Id { get; set; }
-
-    [Required]
-    [Column(TypeName = "varchar(30)")]
-    public string RoleName { get; set; }
-}
+//     [Required]
+//     [Column(TypeName = "varchar(30)")]
+//     public string RoleName { get; set; }
+// }
 [Index(nameof(Name), IsUnique = true)]
 public class Ward
 {

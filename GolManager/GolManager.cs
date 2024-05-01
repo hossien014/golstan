@@ -129,8 +129,74 @@ public class GolManager(GolestanContext context, RoleManager<IdentityRole> roleM
         {
             throw new GolManagerException($"role dose not exist{id} ", 404);
 
-        }        
-        
-        await roleManager.DeleteAsync(roleToDelete); 
+        }
+
+        await roleManager.DeleteAsync(roleToDelete);
     }
+
+    #region staff 
+    public async Task CreateStaff(Staff staff)
+    {
+        try
+        {
+            var a = await context.Staffs.AddAsync(staff);
+            await context.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            throw new GolManagerException(e.Message, 500);
+        }
+
+    }
+
+    public async Task<List<Staff>> GetStaffs()
+    {
+        var StaffList = await context.Staffs.Include(x => x.Ward).ToListAsync();
+        return StaffList;
+    }
+
+    public void DeleteStaff(int staffId)
+    {
+        var staffToDelete = context.Staffs.FirstOrDefault(x => x.Id == staffId);
+        if (staffToDelete != null)
+        {
+            context.Staffs.Remove(staffToDelete);
+            context.SaveChanges();
+        }
+    }
+
+    public async Task<Staff> GetStaff(int id)
+    {
+        try
+        {
+            var staff = await context.Staffs.FirstOrDefaultAsync(x => x.Id == id);
+            if (staff == null)
+            {
+                throw new GolManagerException($"No staff found with id :{id}", 404);
+            }
+            return staff;
+        }
+        catch (Exception e)
+        {
+            throw new GolManagerException(e.Message, 500);
+        }
+    }
+
+    public void EditStaff(Staff staff)
+    {
+        context.Entry(staff).State = EntityState.Modified;
+        try
+        {
+            context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new GolManagerException(e.Message, 500);
+        }
+
+
+    }
+
+
+    #endregion
 }

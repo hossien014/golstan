@@ -1,9 +1,93 @@
 @page 
-@model StaffModel 
+@model StaffModel
 
-<h1> مدیریت کارمندان </h1>
+<h1>مدیریت کارمندان</h1>
+<div>
+    <p class="alert alert-dark">@Model.message</p>
+</div>
+<div>
+    <table class="table">
+<thead>
+    <tr>
+        <th>
+            #
+        </th>
+        <th>Name</th>
+        <th>Family</th>
+        <th>Ward</th>
+        <th>Role</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+</thead>
+<tbody>
+    @{
+        int counter = 0;
+        foreach(var staff in Model.staff_list){
+            
+            counter ++ ;
+            <tr>
+                <th> 
+                    @counter;
+                </th>
+                <th>
+                    @staff.FirstName
+                </th>
+                <th>@staff.LastName</th>
+                <th>
+                    @staff.Ward.Name
+                </th>
+                <th>@staff.Role.Name</th>
+                <th>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="Delete" asp-route-id="@staff.Id">Delete</button>
+                    </form>
+                </th>
+                <th>
+                <a href="/manager/staff/@staff.Id" class=" link-dark">edit</a>
+                </th>
+            </tr>
+        }
+    }
+        </tbody>
+        
+    </table>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form method="post" asp-for="Molde.staff">
+      <div asp-valdation-summery="ModelOnly"></div>
 
-<form method="post">
+      <div class="form-group">
+        <label asp-for="staff.FirstName"></label>
+        <input asp-for="staff.FirstName" />
+        <span asp-validation-for="staff.FirstName" class="text-danger"></span>
+      </div>
 
-for adding new staff 
-</form>
+      <div class="form-group">
+        <label asp-for="staff.LastName"></label>
+        <input asp-for="staff.LastName" />
+        <span asp-validation-for="staff.LastName" class=" text-danger"></span>
+      </div>
+
+      <div class="form-group">
+        <label asp-for="staff.WardId"></label>
+        <select asp-for="staff.WardId" asp-items="Model.WardList"></select>
+      </div>
+
+      <div class="form-group">
+        <label asp-for="staff.RoleId"></label>
+        <select  asp-for="staff.RoleId" asp-items="Model.RoleList"></select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Create new staff"/>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

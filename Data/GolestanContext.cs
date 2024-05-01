@@ -12,7 +12,7 @@ public class GolestanContext : IdentityDbContext<IdentityUser>
 
     }
 
-    public DbSet<Role> Roles { get; set; }
+    // public DbSet<Role> Roles { get; set; }
     public DbSet<Ward> Wards { get; set; } //MAKE IT WARD   
     public DbSet<Staff> Staffs { get; set; }
     public DbSet<Shift> Shifts { get; set; }

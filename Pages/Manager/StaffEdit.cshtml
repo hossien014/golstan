@@ -1,0 +1,34 @@
+@page "/Manager/staff/{Id}"
+@model StaffEditModel
+
+<h1>تغییر</h1>
+<div class="alert alert-danger">
+  <p>@Model.message</p>
+</div>
+<div>
+  <form asp-for="Model.staff" method="post">
+    <div>
+        <label asp-for="staff.FirstName"></label>
+        <input asp-for="staff.FirstName" placeholder="@Model.staff.FirstName" />
+    </div>
+<div>
+
+    <label asp-for="staff.LastName"></label>
+    <input asp-for="staff.LastName" placeholder="Model.staff.LastName" />
+</div>
+<div>
+
+    <label asp-for="staff.Ward"></label>
+    <select asp-for="staff.WardId" asp-items="Model.WardList"></select>
+</div>
+<div>
+
+    <label asp-for="staff.Role"></label>
+    <select asp-for="staff.RoleId" asp-items="Model.RoleList"></select>
+</div>
+<div>
+    <input type="hidden" asp-for="staff.Id" value="@Model.staff.Id">
+    <input type="submit" value="change staff info ">
+</div>
+  </form>
+</div>

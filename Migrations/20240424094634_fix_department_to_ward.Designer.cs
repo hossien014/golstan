@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gol_razor;
 
@@ -10,9 +11,11 @@ using gol_razor;
 namespace gol_razor.Migrations
 {
     [DbContext(typeof(GolestanContext))]
-    partial class GolestanContextModelSnapshot : ModelSnapshot
+    [Migration("20240424094634_fix_department_to_ward")]
+    partial class fix_department_to_ward
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -209,6 +212,24 @@ namespace gol_razor.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("gol_razor.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleName")
+                        .IsUnique();
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("gol_razor.Models.Shift", b =>
                 {
                     b.Property<int>("Id")
@@ -251,9 +272,8 @@ namespace gol_razor.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("WardId")
                         .HasColumnType("INTEGER");
@@ -357,7 +377,7 @@ namespace gol_razor.Migrations
 
             modelBuilder.Entity("gol_razor.Models.Staff", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "Role")
+                    b.HasOne("gol_razor.Models.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
