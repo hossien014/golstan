@@ -45,6 +45,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "FastExcel": {
+              "target": "Package",
+              "version": "[3.0.13, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.3, )"
@@ -84,6 +88,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "PersianDate": {
+              "target": "Package",
+              "version": "[3.5.5, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -1,6 +1,6 @@
 using System.Text;
 using gol_razor;
-using gol_razor.GolManager;
+using gol_razor._GolManager;
 using gol_razor.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -131,5 +131,5 @@ using (var scope = app.Services.CreateScope())
         await UserManeger.AddToRoleAsync(user, "Admin");
     }
 }
-app.UseStatusCodePagesWithRedirects("/errors/{0}");
+//app.UseStatusCodePagesWithRedirects("/errors/{0}");
 app.Run();

@@ -1,0 +1,318 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* font-size: 100%; */
+  font: inherit;
+  vertical-align: baseline;
+  font-family: "farsifont", sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+/* start  */
+@font-face {
+  font-family: farsifont;
+  src: url("/fonts/PERSIAN-BADKH@T2.TTF") format("truetype");
+  /* font-size: 65px; */
+}
+:root {
+  --background: #282828;
+  --shift-card-head: #39373c;
+  --light-gray: #7e7e7e;
+  --dark-gray: #353535;
+}
+
+html {
+  margin: 0;
+  font-family: "farsifont", sans-serif;
+  background-color: var(--background);
+  /* font-size: 25px; */
+}
+nav {
+
+  margin: 10px 10px 10px 10px;
+  height: 7%;
+  /* background-color: var(--dark-gray); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shift-card {
+  margin: 10px;
+  overflow: hidden;
+  height: 80%;
+  margin-top: 1%;
+  border-radius: 20px;
+  background-color: var(--light-gray);
+}
+.card-header {
+  justify-content: flex-end;
+  align-content: flex-end;
+  height: 8%;
+  background-color: var(--dark-gray);
+}
+.card-header p {
+  margin: 5px;
+  margin-right: 15 px;
+  /* background-color: red; */
+}
+.week {
+  margin-right: 15px;
+  color: white;
+}
+.shamsi-date {
+  color: rgb(216, 216, 216);
+  margin-right: 15px;
+}
+.shamsi-month {
+  margin-right: 10px;
+  color: var(--light-gray);
+}
+.gerigory-date {
+  color: var(--light-gray);
+  margin-right: 10px;
+}
+.shift-info {
+  background-color: var(--dark-gray);
+  height: 95%;
+}
+.shift-sec {
+  display: flex;
+  height: 33.33%;
+}
+.morning {
+  background-color: var(--light-gray);
+}
+.evening {
+  background-color: var(--dark-gray);
+}
+.night {
+  height: 25%;
+  background-color: var(--light-gray);
+}
+
+.shift-name {
+  align-self: center;
+  margin-right: 5px;
+  /* background: red; */
+  /* width: 10%; */
+  width: 40px;
+  /* text-align: center; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.shift-name p {
+  color: rgb(255, 255, 255);
+  transform: rotate(90deg);
+  width: 30px;
+}
+
+.staff-names {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-grow: 1; */
+  /* padding: 10px; */
+  justify-content: center;
+  align-content: center;
+  margin: 10px;
+  /* background-color: rgb(255, 242, 0); */
+  width: 90%;
+}
+.staff-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  height: 25%;
+  width: 30%;
+  margin: 0 1% 1% 0;
+  background-color: rgb(233, 233, 233);
+}
+
+.s-btn {
+  font-family: "farsifont";
+  font-size: 25px;
+
+  background-color: var(--dark-gray);
+  color: rgb(255, 255, 255);
+  border: 1px solid black;
+  outline: none;
+  display: flex;
+  /* justify-self: center; */
+  /* align-self: center; */
+  align-items: center;
+  border-radius: 8px;
+  height: 35px;
+  text-align: center;
+}
+.s-btn:active {
+  background-color: var(--light-gray);
+}
+.down {
+  background-color: red;
+  margin-top: 1%;
+  /* background-color: brown; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  color: var(--light-gray);
+}
+.down-img {
+  /* background-color: aqua; */
+  opacity: 0.4;
+  height: 20px;
+}
+.today {
+  display: flex;
+  justify-content: center;
+  /* background-color: royalblue; */
+  width: 33.33%;
+}
+.go-to {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 33.33%;
+  /* background-color: antiquewhite; */
+}
+.go-to p {
+  color: white;
+  margin-right: 5px;
+}
+.go-to select {
+  margin-right: 5px;
+}
+.go-up {
+  width: 33.33%;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.4;
+}
+.go-up p {
+  /* background-color: #4c4a4e; */
+  color: white;
+  text-align: center;
+}
+.up-img {
+  height: 20px;
+  transform: rotate(180deg);
+}

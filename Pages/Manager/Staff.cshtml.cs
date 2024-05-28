@@ -1,4 +1,4 @@
-using gol_razor.GolManager;
+using gol_razor._GolManager;
 using gol_razor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

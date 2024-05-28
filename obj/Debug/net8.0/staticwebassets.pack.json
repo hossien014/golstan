@@ -5,12 +5,28 @@
       "PackagePath": "staticwebassets\\gol_razor.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\arrow.svg",
+      "PackagePath": "staticwebassets\\arrow.svg"
+    },
+    {
+      "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\css\\shift.css",
+      "PackagePath": "staticwebassets\\css\\shift.css"
+    },
+    {
       "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\fonts\\PERSIAN-BADKH@T2.TTF",
+      "PackagePath": "staticwebassets\\fonts\\PERSIAN-BADKH@T2.TTF"
+    },
+    {
+      "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\fonts\\URDTYPEB.TTF",
+      "PackagePath": "staticwebassets\\fonts\\URDTYPEB.TTF"
     },
     {
       "Id": "C:\\Users\\abdoalhe\\Desktop\\Asp_test\\gol_razor\\wwwroot\\js\\site.js",

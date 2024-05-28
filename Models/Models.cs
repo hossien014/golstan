@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,12 +38,14 @@ public class Shift
     public Staff Staff { get; set; }
 
     [DataType(DataType.Date)]
+    // [Column(TypeName = "Date")]
+    // [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     [Required]
-    public DateTime Date { get; set; }
+    public DateOnly Date { get; set; }
 
-    public int DepartmentId { get; set; }
-    [ForeignKey("DepartmentId")]
-    public Ward Department { get; set; }
+    public int WardId { get; set; }
+    [ForeignKey("WardId")]
+    public Ward Ward { get; set; }
 
     [Required]
     [Column(TypeName = "varchar(2)")]
@@ -69,4 +72,59 @@ public class Ward
 
     // Navigation property
     public ICollection<Staff>? Staffs { get; set; }
+}
+
+
+
+public class ShiftData
+{
+    public string WardName { get; set; }
+    public Dictionary<string, List<string>> Shifts { get; set; }
+    public DateTime Date { get; set; }
+}
+
+public class Pdate
+{
+    public int Year { get; set; }
+    public int Month { get; set; }
+    public int day { get; set; }
+    public DateTime GetDateTime()
+    {
+        var pc = new PersianCalendar();
+        var date_ = new DateTime(Year, Month, day, pc);
+        return date_;
+
+    }
+
+    public override string ToString()
+    {
+        var m = Month < 10 ? "0" + Month : Month.ToString();
+        var d = day < 10 ? "0" + day : day.ToString();
+        return $"{Year}-{m}-{d}";
+    }
+    public Pdate ToPdate(string date)
+    {
+
+        var d = date.Split("-");
+        var pc = new PersianCalendar();
+        var date_ = new Pdate
+        {
+            Year = int.Parse(d[0]),
+            Month = int.Parse(d[1]),
+            day = int.Parse(d[2])
+        };
+        return date_;
+    }
+    public Pdate ChangeDay(Pdate pdate, int _day)
+    {
+        pdate.day = _day;
+        return pdate;
+    }
+
+    public string ChangeDay(string pdate, int _day)
+    {
+        var d = ToPdate(pdate);
+        d.day = _day;
+        return d.ToString();
+    }
 }

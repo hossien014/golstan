@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using gol_razor;
 using Microsoft.AspNetCore.Mvc;
-using gol_razor.GolManager;
+using gol_razor._GolManager;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 public class WardModel(GolestanContext context, GolManager golManager) : PageModel

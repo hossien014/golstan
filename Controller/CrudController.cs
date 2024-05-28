@@ -1,5 +1,5 @@
 using gol_razor;
-using gol_razor.GolManager;
+using gol_razor._GolManager;
 using gol_razor.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
