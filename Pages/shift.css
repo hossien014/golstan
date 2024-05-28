@@ -9,3 +9,10 @@ nav{
     display: flex;
     flex-direction: row;
 }
+@media (min-width: 400px) {
+
+  html{
+    font-size: 65px;
+    background-color: red;
+  }
+}
