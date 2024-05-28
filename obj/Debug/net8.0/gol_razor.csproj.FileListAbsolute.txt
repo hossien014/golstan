@@ -276,3 +276,4 @@ C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\Microsoft.Identity
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\FastExcel.dll
 C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\bin\Debug\net8.0\PersianDate.Standard.dll
+C:\Users\abdoalhe\Desktop\Asp_test\gol_razor\obj\Debug\net8.0\gol_razor.sourcelink.json
