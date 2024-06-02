@@ -1,0 +1,24 @@
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+    <ul>
+      @if(SignInManager.IsSignedIn(User)){
+      <li>
+        <a href="">سلام  @UserManager.GetUserName(User)</a>
+      </li>
+      <li>
+        <a href="/Identity/Account/Logout">خروج</a>
+      </li>
+      } 
+      else{ 
+        <li>
+            <a href="/Identity/Account/Loging">ورود</a>
+            
+        </li>
+        <li>
+            <a href="/Identity/Account/register">ثبت نام</a>
+        </li>
+      }
+    </ul>

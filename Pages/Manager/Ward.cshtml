@@ -1,0 +1,52 @@
+@page
+@model WardModel 
+@{ ViewData["Title"]="مدیریت"; }
+<h1>بخش ها</h1>
+<p class="alert alert-success">@Model.massage<p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">نام بخش</th>
+      <th scope="col">حذف</th>
+      <th scope="col">ویرایش</th>
+    </tr>
+</thead>
+  <tbody>
+    @{ 
+        int counter = 0; 
+
+        foreach (var ward in Model.wards)
+         { counter++;
+    <tr>
+      <th scope="row">@counter</th>
+      <td>@ward.Name</td>
+      <td>
+    <form method="post">
+            <button type="submit" asp-page-handler="Delete" asp-route-id="@ward.Id">Delete</button>
+        </form>
+    </td>
+      <td>
+        <form method="post">
+              <input asp-for="W.Name" >
+              <input type="hidden" name="Id" value="@ward.Id">
+
+            <button type="submit" asp-page-handler="put" asp-route-id="@ward.Id">edit</button>
+      </form>
+    </td>
+
+    </tr>
+
+    } 
+}
+    <tr>
+        <th>جدید</th>
+        <th>
+          <form method="post">
+            <input asp-for=W.Name>
+            <input type="submit" >
+          </form>
+        </th>
+    </tr>
+  </tbody>
+</table>

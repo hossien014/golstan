@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gol_razor;
 
@@ -10,9 +11,11 @@ using gol_razor;
 namespace gol_razor.Migrations
 {
     [DbContext(typeof(GolestanContext))]
-    partial class GolestanContextModelSnapshot : ModelSnapshot
+    [Migration("20240501103233_ChangleCoustomRoleWithIdentityROle")]
+    partial class ChangleCoustomRoleWithIdentityROle
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
@@ -216,7 +219,10 @@ namespace gol_razor.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("Date");
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ShiftName")
                         .IsRequired()
@@ -225,14 +231,11 @@ namespace gol_razor.Migrations
                     b.Property<int>("StaffId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("WardId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("StaffId");
+                    b.HasIndex("DepartmentId");
 
-                    b.HasIndex("WardId");
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Shifts");
                 });
@@ -338,21 +341,21 @@ namespace gol_razor.Migrations
 
             modelBuilder.Entity("gol_razor.Models.Shift", b =>
                 {
+                    b.HasOne("gol_razor.Models.Ward", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("gol_razor.Models.Staff", "Staff")
                         .WithMany()
                         .HasForeignKey("StaffId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("gol_razor.Models.Ward", "Ward")
-                        .WithMany()
-                        .HasForeignKey("WardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Department");
 
                     b.Navigation("Staff");
-
-                    b.Navigation("Ward");
                 });
 
             modelBuilder.Entity("gol_razor.Models.Staff", b =>

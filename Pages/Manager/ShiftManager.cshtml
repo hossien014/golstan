@@ -1,0 +1,151 @@
+@page 
+@model ShiftManagerModel 
+@using gol_razor._GolManager 
+@{
+if(Model.Ward!=null){
+<button onclick="SendData()">send</button>
+<h3 id="send_message">...</h3>
+var s = new Shamsi(); 
+var shamsi = s.ConvertToShamsi(Model.DaysOfMonth[0]);
+var shamsiString = s.GetShamsiString(Model.DaysOfMonth[0]);
+<script>
+  // get ward name
+  //get all shift for this ward at that month
+
+  var r = {};
+
+  function SendData() {
+    var url = "/api/save";
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    // Call the gs() function to populate the result object
+    var staffAndShifts = gs();
+
+    // Send the result object as JSON data
+    var job = {
+      WardName: "@Model.Ward.Name",
+      Shifts: staffAndShifts,
+      Date: "@shamsi",
+    };
+
+     xhr.send(JSON.stringify(job));
+     
+     xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        if (xhr.status == 200) {
+          document.querySelector("#send_message").textContent ="شیف ها با موفقیت به دیتا بیس وارد شدند"
+        } else {
+          
+          document.querySelector("#send_message").textContent ="مشکلی در اپدیت کردن شیفیت ها وجود دارد"
+        }
+      }
+     }
+
+    console.log(JSON.stringify(staffAndShifts));
+  }
+
+  function gs() {
+    var tbody = document.querySelector("tbody");
+    var rows = tbody.querySelectorAll("tr");
+    var result = {};
+
+    rows.forEach((row) => {
+      //var name = row.querySelector('.name').textContent;
+      var staff_Ward_Id = row.id;
+      var rowInputs = row.querySelectorAll("input");
+      var sList = [];
+
+      rowInputs.forEach((c) => {
+        sList.push(c.value);
+      });
+
+      //result[name] = sList;
+      result[staff_Ward_Id] = sList;
+    });
+
+    return result;
+  }
+
+  function tab() {
+    var inputElements = Array.from( document.querySelectorAll('input'));
+    var cureentIndex = inputElements.indexOf(document.activeElement);
+    if(cureentIndex >-1 ){
+     var nextelement =   inputElements[cureentIndex+1 ]|| inputElements[0];
+     nextelement.focus();
+     nextelement.select();
+     document.querySelector('#send_message').textContent = "تغییرات ذخیره نشده ایی وجود دارد "
+    }
+  
+
+  }
+</script>
+
+<div class="card-header">
+  <h1>@Model.Ward.Name برنامه</h1>
+  <div>
+    <form method="get">
+      <input hidden name="ward" value="@Model.Ward.Name" />
+      <input type="number" name="year" id="" value="" placeholder="year">
+      <input type="number" name="month" id="" value="" placeholder="month">
+      <input type="submit" value="goto">
+    </form>
+    <form method="get">
+      <input type="hidden" name="ward" value="@Model.Ward.Name">
+      <input type="submit" value="برو به امروز">
+    </form>
+  </div>
+  <h3>@shamsiString</h3>
+  <hr class="shadow" />
+</div>
+<table class="table table-bordered table-responsive-md">
+  <thead>
+    <tr>
+      <th>name</th>
+      @{ for(int i = 1;i <=Model.DaysOfMonth.Count;i++){
+
+      <th>@i @Model.dayname[Model.DaysOfMonth[i-1].DayOfWeek.ToString()][0]</th>
+      } }
+    </tr>
+  </thead>
+  <tbody>
+    @{
+      var shiftName= "";
+       foreach(var staff in Model.Staffs){
+    <tr id="@staff.Id/@staff.WardId">
+      <th class="name">@staff.FirstName @staff.LastName</th>
+
+      @{for(int i = 1 ; i <= @Model.DaysOfMonth.Count; i++){ 
+
+        try{
+         shiftName = Model.IdAndShifts[staff.Id][i-1].ShiftName;
+        }
+        catch{
+
+          shiftName ="";
+        }
+        
+      <td @i>
+        <input
+          oninput="tab()"
+          maxlength="1"
+          type="text"
+          
+          value="@shiftName"
+          name="@i"
+          style="width: 20px"
+        />
+      </td>
+
+      } }
+    </tr>
+
+    } }
+  </tbody>
+</table>
+} else{ foreach(var _ward in Model.Wards){
+<div class="border-3">
+  <a asp-page="ShiftManager" asp-route-ward="@_ward.Name">@_ward.Name</a>
+</div>
+} } }

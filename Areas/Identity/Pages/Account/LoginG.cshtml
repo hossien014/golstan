@@ -1,0 +1,26 @@
+@page
+@model LoginGModel
+
+<h1> login page </h1>
+
+<form  method="post">
+<div asp-validation-summary="ModelOnly" class="text-dangers" role="alert"></div>
+    <div>
+        <label asp-for="input.UserName"></label>
+        <input  asp-for="input.UserName">
+        <span asp-validation-for="input.UserName"></span>
+    </div>
+
+    <div>
+        <label asp-for="input.Password"></label>
+        <input  asp-for="input.Password">
+        <span asp-validation-for="input.Password"></span>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
