@@ -253,7 +253,7 @@ nav {
 
 .s-btn {
   font-size: 60px;
-font-family: "farsifont";
+  font-family: "farsifont";
   background-color: var(--dark-gray);
   color: rgb(255, 255, 255);
   border: 1px solid black;
@@ -324,10 +324,30 @@ font-family: "farsifont";
   transform: rotate(180deg);
 }
 
-@media (min-width: 400px) 
-{
+@media (min-width: 800px) {
+  .s-btn {
+    font-size: 40px;
+  }
+  .go-to select {
+    font-size: 35px;
+  }
+  html {
+    font-size: 40px;
+  }
   .shift-card {
-    color: red;
+    /* color: red; */
   }
 }
 
+@media (min-width: 1000px) {
+  html{
+    font-size: 30px;
+  }
+ 
+.s-btn{
+  font-size: 30px;
+} 
+  .go-to select {
+    font-size: 25px;
+  }
+}
