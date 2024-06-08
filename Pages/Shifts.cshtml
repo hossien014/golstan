@@ -1,6 +1,6 @@
-@page 
-@model ShiftModel 
-@{ Layout="_Shiftlayout"; }
+@page
+ @model ShiftModel 
+ @{ Layout="_Shiftlayout"; }
 
 <link rel="stylesheet" href="~/css/shift.css" />
 
@@ -23,8 +23,10 @@
     <p>خرداد</p>
   </div>
 </nav>
+<div class="top-space"></div>
+@{ for(int i =1; i <= 31 ; i++ ){
 
-<div class="shift-card">
+<div id="@i-card" class="shift-card">
   <div class="card-header">
     <p dir="rtl">
       <span class="week">دوشنبه</span>
@@ -40,31 +42,31 @@
       </div>
       <div class="staff-names">
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+        <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
       </div>
     </div>
@@ -75,31 +77,31 @@
       </div>
       <div class="staff-names">
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
       </div>
     </div>
@@ -110,28 +112,29 @@
       </div>
       <div class="staff-names">
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
         <div class="staff-name">
-          <p>حسین سلیمانی</p>
+          <p>-----</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
+<div class="down-space"></div>
+} }
 <div class="down">
   <p>روز بعد</p>
   <img class="down-img" src="/arrow.svg" alt="" />

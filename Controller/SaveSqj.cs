@@ -27,13 +27,13 @@ public class SaveSqj(GolManager golManager) : ControllerBase
 
     [HttpPost]
     [Route("api/getshifts")]
-    public async Task<IActionResult> GetShiftsInMonth(int y, int m, int s)
+    public async Task<IActionResult> GetShiftsInMonth(int year, int month, int staff_id)
     {
         var pc = new PersianCalendar();
         var d = new DateTime(1403, 2, 1, pc);
         try
         {
-            var shifts = await golManager.GetShiftsInMonth(s, y, m);
+            var shifts = await golManager.GetShiftsInMonth(staff_id, year, month);
             return Ok(shifts);
         }
         catch (GolManagerException e)

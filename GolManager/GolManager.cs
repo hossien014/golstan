@@ -218,7 +218,18 @@ public class GolManager(GolestanContext context, RoleManager<IdentityRole> roleM
 
     #endregion
     #region shifts 
+    public void GetFirstAndLastDayOfGerigory(int year, int month, out DateTime firstDay, out DateTime lastDay)
+    {
 
+        firstDay = new DateTime(year, month, 1);
+        var pc = new PersianCalendar();
+        var dayCount = pc.GetDaysInMonth(pc.GetYear(firstDay), pc.GetDayOfMonth(firstDay));
+        lastDay = firstDay.AddDays(dayCount - 1);
+
+        logger.LogInformation("starting to add shifts first day of the month : {firstDay} and last day of the month{lastDay}"
+        , firstDay, lastDay);
+
+    }
     public void AddShifts(ShiftData save_list, bool _overrid = false)
     {
         var shiftNameList = new string[] { "m", "n", "o", "e", "M", "N", "O", "E" };

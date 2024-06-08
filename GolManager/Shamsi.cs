@@ -56,7 +56,7 @@ public class Shamsi
     public string GetShamsiString(DateTime date)
     {
         var pc = new PersianCalendar();
-        return $"{pc.GetYear(date)}-{pc.GetMonth(date)}-{pc.GetDayOfMonth(date)}";  
+        return $"{pc.GetYear(date)}-{pc.GetMonth(date)}-{pc.GetDayOfMonth(date)}";
 
     }
     public Pdate ConvertToShamsi_Pdate(DateTime date)
@@ -68,5 +68,22 @@ public class Shamsi
 
         Pdate p = new Pdate { Year = y, Month = m, day = d };
         return p;
+    }
+
+    public List<DateTime> GetFirst_Last_month(DateTime gerigory_Date)
+    {
+
+        
+        var pc = new PersianCalendar();
+        int year_s = pc.GetYear(gerigory_Date);
+        int month_s = pc.GetMonth(gerigory_Date);
+
+        DateTime firstDayInShamsi = pc.ToDateTime(year_s, month_s, 1, 1, 1, 1, 1);
+
+        int days_in_Mounth = pc.GetDaysInMonth(year_s, month_s);
+
+        DateTime lastDayInShamsi = firstDayInShamsi.AddDays(days_in_Mounth - 1);
+        return new List<DateTime> { firstDayInShamsi, lastDayInShamsi };
+
     }
 }

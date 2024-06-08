@@ -143,25 +143,53 @@ html {
   font-size: 66px;
 }
 nav {
-  margin: 10px 10px 10px 10px;
+  z-index: 10;
+  position: fixed;
+  /* margin: 10px 10px 10px 10px; */
   height: 7%;
+  width: 100%;
   /* background-color: var(--dark-gray); */
+  /* background-color: red; */
+  border-radius: 29px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* font-size: 66px; */
+  /* filter: blur(10px); */
+}
+
+nav ::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: rgba(255, 255, 255, 0.202) solid 0.1rem;
+  border-radius: 5px;
+  background-color: rgb(50, 50, 50);
+  opacity: 0.3;
+  filter: blur(10px);
+  background-color: var(--dark-gray);
+  z-index: -50;
+  /* background-color: red; */
+}
+.top-space {
+  height: 7%;
 }
 .shift-card {
   border: #7e7e7e solid 0.5px;
   margin-left: 2.5%;
   margin-right: 2.5%;
+  margin-top: 1%;
+  margin-bottom: 2%;
   width: 95%;
   /* margin: 10px; */
   overflow: hidden;
   height: 80%;
-  margin-top: 1%;
   border-radius: 20px;
   background-color: var(--light-gray);
+  /* background-color: red; */
   box-shadow: 3px 15px 30px 0px rgb(0, 4, 9);
   /* background-color: red; */
 }
@@ -171,6 +199,10 @@ nav {
   height: 8%;
   background-color: var(--dark-gray);
   /* font-size: 25px; */
+}
+.down-space{
+  background-color: red;
+  height: 7%;
 }
 .card-header p {
   margin: 5px;
@@ -289,6 +321,7 @@ nav {
   justify-content: center;
   /* background-color: royalblue; */
   width: 33.33%;
+  /* z-index: 11; */
 }
 .go-to {
   display: flex;
@@ -312,7 +345,8 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  opacity: 0.4;
+  /* opacity: 0.4; */
+  /* z-index: 10; */
 }
 .go-up p {
   /* background-color: #4c4a4e; */
@@ -340,13 +374,13 @@ nav {
 }
 
 @media (min-width: 1000px) {
-  html{
+  html {
     font-size: 30px;
   }
- 
-.s-btn{
-  font-size: 30px;
-} 
+
+  .s-btn {
+    font-size: 30px;
+  }
   .go-to select {
     font-size: 25px;
   }
