@@ -232,7 +232,7 @@ public class GolManager(GolestanContext context, RoleManager<IdentityRole> roleM
     }
     public void AddShifts(ShiftData save_list, bool _overrid = false)
     {
-        var shiftNameList = new string[] { "m", "n", "o", "e", "M", "N", "O", "E" };
+        var shiftNameList = new string[] { "m", "n", "o", "e", "M", "N", "O", "E","f","F" };
 
         var pc = new PersianCalendar();
         var day = 0;

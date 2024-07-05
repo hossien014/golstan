@@ -70,20 +70,21 @@ public class Shamsi
         return p;
     }
 
-    public List<DateTime> GetFirst_Last_month(DateTime gerigory_Date)
+    public List<DateTime> GetFirst_Last_month(DateTime gerigory_Date, out int days_in_Mounth)
     {
 
-        
+
         var pc = new PersianCalendar();
         int year_s = pc.GetYear(gerigory_Date);
         int month_s = pc.GetMonth(gerigory_Date);
 
         DateTime firstDayInShamsi = pc.ToDateTime(year_s, month_s, 1, 1, 1, 1, 1);
 
-        int days_in_Mounth = pc.GetDaysInMonth(year_s, month_s);
+        days_in_Mounth = pc.GetDaysInMonth(year_s, month_s);
 
         DateTime lastDayInShamsi = firstDayInShamsi.AddDays(days_in_Mounth - 1);
         return new List<DateTime> { firstDayInShamsi, lastDayInShamsi };
 
     }
+
 }

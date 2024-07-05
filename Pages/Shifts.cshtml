@@ -1,6 +1,6 @@
-@page
- @model ShiftModel 
- @{ Layout="_Shiftlayout"; }
+@page 
+@model ShiftModel 
+@{ Layout="_Shiftlayout"; }
 
 <link rel="stylesheet" href="~/css/shift.css" />
 
@@ -24,13 +24,17 @@
   </div>
 </nav>
 <div class="top-space"></div>
-@{ for(int i =1; i <= 31 ; i++ ){
+@{ var tmp_date = DateOnly.FromDateTime(Model.First_Last_Day[0]); 
+  int f_count= 0;
+}
+<!--todo : get exact day of month insted of hard coding 31  -->
+@{ for(int i =1; i <= @Model.DaysCount ; i++ ){
 
 <div id="@i-card" class="shift-card">
   <div class="card-header">
     <p dir="rtl">
-      <span class="week">دوشنبه</span>
-      <span class="shamsi-date">1403/3/6</span>
+      <span class="week">@Model.month_shifts[1].ShiftName</span>
+      <span class="shamsi-date">1403/3/@i</span>
       <span class="shamsi-month">خرداد معادل</span>
       <span class="gerigory-date" dir="ltr"> 2024/4/4</span>
     </p>
@@ -41,33 +45,30 @@
         <p>صبح</p>
       </div>
       <div class="staff-names">
+        @for(int j = 0 ; j < 9 ; j++)
+        {
+
+         
         <div class="staff-name">
-        <p>-----</p>
+          @try{
+            <p>@Model.sd[tmp_date]["m"][j]</p>
+          }
+          catch{
+
+            if(Model.sd[tmp_date].ContainsKey("f"))
+            {
+              if(Model.sd[tmp_date]["f"].Count>f_count){
+                <p style="color: red;">@Model.sd[tmp_date]["f"][f_count]+ </p>
+                f_count ++;    
+              }
+              else{
+                <p>++</p>
+              }
+            }
+         
+          }
         </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
+      }
       </div>
     </div>
 
@@ -75,66 +76,58 @@
       <div class="shift-name">
         <p>عصر</p>
       </div>
+      @{
+        f_count=0;
+      }
       <div class="staff-names">
+        @for(int j = 0 ; j < 9; j++) {
+          
         <div class="staff-name">
-          <p>-----</p>
+      @try{
+            <p>@Model.sd[tmp_date]["e"][j]</p>
+          }
+          catch{
+
+            if(Model.sd[tmp_date].ContainsKey("f"))
+            {
+              if(Model.sd[tmp_date]["f"].Count>f_count){
+                <p style="color: red;">@Model.sd[tmp_date]["f"][f_count]+ </p>
+                f_count ++;    
+              }
+              else{
+                <p>++</p>
+              }
+            }
+ 
+          }
         </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
+
+        }
       </div>
     </div>
-
     <div class="shift-sec night">
       <div class="shift-name">
         <p>شب</p>
       </div>
+
       <div class="staff-names">
+        @for(int j = 0 ; j < 9; j++) {
         <div class="staff-name">
-          <p>-----</p>
+       @try{
+            <p>@Model.sd[tmp_date]["n"][j]</p>
+          }
+          catch{
+            <p>++</p>
+          }
         </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
-        <div class="staff-name">
-          <p>-----</p>
-        </div>
+        }
       </div>
     </div>
   </div>
 </div>
 <div class="down-space"></div>
-} }
+f_count =0;
+tmp_date=tmp_date.AddDays(1); } }
 <div class="down">
   <p>روز بعد</p>
   <img class="down-img" src="/arrow.svg" alt="" />
