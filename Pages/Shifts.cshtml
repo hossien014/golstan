@@ -1,12 +1,30 @@
 @page 
 @model ShiftModel 
-@{ Layout="_Shiftlayout"; }
+@using gol_razor._GolManager
+@using gol_razor.Models
+
+@{ Layout="_Shiftlayout";
+
+
+  var tmp_date = DateOnly.FromDateTime(Model.First_Last_Day[0]); 
+  Pdate tmp_Pdate = new();
+  int f_count= 0;
+  var shamsi = new Shamsi();
+  var g_today = DateTime.Now;
+  var p_today= shamsi.ConvertToShamsi_Pdate(g_today);
+  var today_tag = $"{p_today.day -1}-d";
+  
+  
+
+}
 
 <link rel="stylesheet" href="~/css/shift.css" />
 
 <nav dir="rtl">
   <div class="today">
-    <button class="s-btn">برو به امروز</button>
+    <a href="#@today_tag">
+      <button class="s-btn">برو به امروز</button>
+    </a>
   </div>
 
   <div class="go-up">
@@ -20,23 +38,23 @@
       <option value="1">1</option>
       <option value="2">2</option>
     </select>
-    <p>خرداد</p>
+    <p>@p_today.MonthName</p>
   </div>
 </nav>
 <div class="top-space"></div>
-@{ var tmp_date = DateOnly.FromDateTime(Model.First_Last_Day[0]); 
-  int f_count= 0;
-}
 <!--todo : get exact day of month insted of hard coding 31  -->
 @{ for(int i =1; i <= @Model.DaysCount ; i++ ){
+
+ 
+  tmp_Pdate= shamsi.ConvertToShamsi_Pdate(tmp_date.ToDateTime(TimeOnly.Parse("00:00:00")));
 
 <div id="@i-card" class="shift-card">
   <div class="card-header">
     <p dir="rtl">
-      <span class="week">@Model.month_shifts[1].ShiftName</span>
-      <span class="shamsi-date">1403/3/@i</span>
-      <span class="shamsi-month">خرداد معادل</span>
-      <span class="gerigory-date" dir="ltr"> 2024/4/4</span>
+      <span style="color: red;" class="week">@tmp_Pdate.DayName</span>
+      <span class="shamsi-date">@tmp_Pdate.Year/@tmp_Pdate.Month/<span style="color:red;" >@i</span></span>
+      <span class="shamsi-month">@tmp_Pdate.MonthName ماه</span>
+      <span class="gerigory-date" dir="ltr"> @tmp_date معادل قمری</span>
     </p>
   </div>
   <div class="shift-info" dir="rtl">
@@ -125,7 +143,7 @@
     </div>
   </div>
 </div>
-<div class="down-space"></div>
+<div id="@i-d" class="down-space"></div>
 f_count =0;
 tmp_date=tmp_date.AddDays(1); } }
 <div class="down">

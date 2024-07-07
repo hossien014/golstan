@@ -20,7 +20,21 @@ public class Shamsi
         return Days_in_Mounth;
     }
 
+    public string EnToFarsDay(DayOfWeek dayOfWeek)
+    {
+        var n = new Dictionary<DayOfWeek, string>
+    {
+        {DayOfWeek.Sunday,"یکشنبه" },
+        {DayOfWeek.Monday,"دوشنبه" },
+        {DayOfWeek.Tuesday,"سه شنبه" },
+        {DayOfWeek.Wednesday,"چهارشنبه" },
+        {DayOfWeek.Thursday,"پنجشنبه" },
+        {DayOfWeek.Friday,"جمعه" },
+        {DayOfWeek.Saturday,"شنبه" }
+    };
 
+        return n[dayOfWeek];
+    }
     public string GetMonthName(int month)
     {
         var n = new Dictionary<int, string>
@@ -53,6 +67,7 @@ public class Shamsi
         return w;
 
     }
+
     public string GetShamsiString(DateTime date)
     {
         var pc = new PersianCalendar();
@@ -65,8 +80,10 @@ public class Shamsi
         int y = pc.GetYear(date);
         int m = pc.GetMonth(date);
         int d = pc.GetDayOfMonth(date);
+        DayOfWeek DayName = pc.GetDayOfWeek(date);
 
-        Pdate p = new Pdate { Year = y, Month = m, day = d };
+
+                Pdate p = new Pdate { Year = y, Month = m, day = d, MonthName = GetMonthName(m), DayName = EnToFarsDay(DayName) };
         return p;
     }
 

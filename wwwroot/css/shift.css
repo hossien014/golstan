@@ -130,7 +130,7 @@ table {
   /* font-size: 65px; */
 }
 :root {
-  --background: #282828;
+  --background: #ffffff;
   --shift-card-head: #39373c;
   --light-gray: #7e7e7e;
   --dark-gray: #353535;
@@ -201,7 +201,7 @@ nav ::before {
   /* font-size: 25px; */
 }
 .down-space{
-  background-color: red;
+  /* background-color: red; */
   height: 7%;
 }
 .card-header p {

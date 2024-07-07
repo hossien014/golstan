@@ -88,6 +88,9 @@ public class Pdate
     public int Year { get; set; }
     public int Month { get; set; }
     public int day { get; set; }
+    public string MonthName{get;set;}
+    public string DayName{get;set;}
+    
     public DateTime GetDateTime()
     {
         var pc = new PersianCalendar();

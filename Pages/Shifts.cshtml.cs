@@ -12,9 +12,14 @@ public class ShiftModel(GolestanContext context, ILogger<ShiftModel> logger, Gol
     public Dictionary<DateOnly, Dictionary<string, List<string>>> sd { get; set; } = new();
     public List<Shift> month_shifts { get; set; }
     public int DaysCount { get; set; }
+
+    
     public IActionResult OnGet(string ward_name)
 
     {
+
+
+        var today = DateTime.Now;
         //find id :
         if (string.IsNullOrEmpty(ward_name))
         {
