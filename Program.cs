@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddScoped<GolManager>();
+
 builder.Services.AddDbContext<GolestanContext>
 (option => option.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
 

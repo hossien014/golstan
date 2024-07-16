@@ -76,3 +76,4 @@ To add a minimal API to your ASP.NET Razor Pages application, you can follow the
 
 With these steps, you've integrated minimal APIs alongside your Razor Pages application. You can define lightweight APIs using minimal API syntax, and they will be accessible alongside your Razor Pages endpoints.
 
+bbb

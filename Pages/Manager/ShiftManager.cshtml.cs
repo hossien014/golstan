@@ -5,8 +5,6 @@ using gol_razor.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NuGet.Common;
-using PersianDate;
-using PersianDate.Standard;
 public class ShiftManagerModel(GolManager golManager) : PageModel
 {
     public Dictionary<string, string> dayname = new Dictionary<string, string>

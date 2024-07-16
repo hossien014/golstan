@@ -3,7 +3,6 @@ using gol_razor.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using PersianDate.Standard;
 
 namespace gol_razor._GolManager;
 
