@@ -74,6 +74,7 @@ public class Shamsi
         return $"{pc.GetYear(date)}-{pc.GetMonth(date)}-{pc.GetDayOfMonth(date)}";
 
     }
+
     public Pdate ConvertToShamsi_Pdate(DateTime date)
     {
         var pc = new PersianCalendar();
@@ -83,7 +84,14 @@ public class Shamsi
         DayOfWeek DayName = pc.GetDayOfWeek(date);
 
 
-                Pdate p = new Pdate { Year = y, Month = m, day = d, MonthName = GetMonthName(m), DayName = EnToFarsDay(DayName) };
+        Pdate p = new Pdate
+        {
+            Year = y,
+            Month = m,
+            day = d,
+            MonthName = GetMonthName(m),
+            DayName = EnToFarsDay(DayName)
+        };
         return p;
     }
 
@@ -95,7 +103,7 @@ public class Shamsi
         int year_s = pc.GetYear(gerigory_Date);
         int month_s = pc.GetMonth(gerigory_Date);
 
-        DateTime firstDayInShamsi = pc.ToDateTime(year_s, month_s, 1, 1, 1, 1, 1);
+        DateTime firstDayInShamsi = pc.ToDateTime(year_s, month_s,1,0,0,0,0);
 
         days_in_Mounth = pc.GetDaysInMonth(year_s, month_s);
 
