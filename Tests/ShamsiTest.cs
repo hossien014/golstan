@@ -3,7 +3,7 @@ using gol_razor._GolManager;
 using gol_razor.Models;
 using System.Security.Cryptography.X509Certificates;
 
-public class FTest
+public class ShamsiTest
 {
     [Theory]
     [InlineData(DayOfWeek.Monday, "دوشنبه")]

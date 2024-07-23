@@ -79,30 +79,7 @@ public class CrudController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, Ward ward)
     {
-        //     if (id != ward.Id)
-        //     {
-        //         return BadRequest("Id Mismatch");
-        //     }
-        //     ward.Name = ward.Name.ToUpper();
-        //     //modifying department with matching id
-        //     Context.Entry(ward).State = EntityState.Modified;
-        //     try
-        //     {
-        //         await Context.SaveChangesAsync();
-        //         return Ok(new { Message = $"ward with id : {id} updated successfully", ward });
-        //     }
-        //     catch (DbUpdateConcurrencyException e)
-        //     {
-        //         if (Context.Wards.FirstOrDefault(x => x.Id == id) == null)
-        //         {
-        //             return NotFound($"ward with id {id} not found for update.");
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
-        // }
+ 
         try
         {
             var result = await golManager.EditWard(id, ward);

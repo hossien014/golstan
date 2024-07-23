@@ -5,7 +5,6 @@ using gol_razor._GolManager;
 using Microsoft.EntityFrameworkCore;
 using gol_razor.Models;
 using Microsoft.AspNetCore.Authorization;
-[Authorize(Policy = "Admin")]
 public class ShiftModel(GolestanContext context, ILogger<ShiftModel> logger, GolManager golManager) : PageModel
 {
 

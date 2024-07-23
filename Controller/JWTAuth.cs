@@ -57,6 +57,7 @@ public class JWTAuth : ControllerBase
     }
     private string GenerateJwtToken(IdentityUser user)
     {
+        
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretkeyawqjkqjwlkqjwoiqcojwoiqjwoijofoqjwoqjoljsakp"));
         var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
         var Claims = new Claim[]
